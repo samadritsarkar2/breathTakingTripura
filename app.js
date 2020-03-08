@@ -10,6 +10,7 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 // mongoose.connect('mongodb://localhost:27017/app-tripura', {useNewUrlParser: true});
  mongoose.connect('mongodb+srv://sam:samadrit123@breathtakingtripura-a9ihc.mongodb.net/apptripura?retryWrites=true&w=majority', {useNewUrlParser: true});
+ 
 // other connections 
 app.use(bodyParser.urlencoded({ extended :true }) );
 app.set("view engine", "ejs");
@@ -60,5 +61,6 @@ app.post("/new", (req,res)=>{
 })
 
 app.listen(3000, ()=>{
+	
 	console.log("Server Started ");
 })
