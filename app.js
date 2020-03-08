@@ -2,7 +2,7 @@ const express = require("express"),
 	  app = express(),
 	  bodyParser = require("body-parser"),
 	  mongoose = require("mongoose");
-
+const port = process.env.PORT || 3000;
 // DB connection
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -60,7 +60,7 @@ app.post("/new", (req,res)=>{
 	})
 })
 
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
 	
 	console.log("Server Started ");
 })
