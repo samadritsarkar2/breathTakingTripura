@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<div class="container">
+<header class="jumbotron">
+<div class="container">
+	<h1>
+		Breathtaking Tripura
+	</h1>
+	<p>
+		Handpicked collection of attractions of Tripura
+	</p>
+	<p>
+		<a class="btn btn-primary btn-lg btn-block" href="/new">ADD NEW LOCATION !</a>
+	</p>
+  </div>
+</header>
+
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+   		<% items.forEach((location)=>{  %>
+	<div class="col-md-3 col-sm-6">
+		<div class="thumbnail">
+			<img src="<%= location.url %>" />
+		<div class="caption">
+		<strong><%= location.name %></strong>
+		<div class="caption">
+		<% var desc = location.description %>
+			<%= desc %>
+		</div>
+		<div >
+			<u>Added by <%= location.user %></u>
+		</div>
+		</div>
+		</div>
+	</div>
+<% }) %>
+	
+	</div>
+</div>
+
+<%- include('partials/footer') %>
