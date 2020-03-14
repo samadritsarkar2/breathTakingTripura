@@ -1,7 +1,10 @@
 const express = require("express"),
 	  app = express(),
 	  bodyParser = require("body-parser"),
-	  mongoose = require("mongoose");
+	  mongoose = require("mongoose"),
+	  fileUpload = require("express-fileupload"),
+	  cloudinary = require("cloudinary") ;
+
 const port = process.env.PORT || 3000;
 // DB connection
 mongoose.set('useNewUrlParser', true);
@@ -10,15 +13,28 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 // mongoose.connect('mongodb://localhost:27017/app-tripura', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://sam:samadrit123@breathtakingtripura-a9ihc.mongodb.net/apptripura?retryWrites=true&w=majority', {useNewUrlParser: true});
+
+// Cloudinary config 
+
+cloudinary.config({
+  cloud_name: 'samadritsarkar',
+  api_key: '989154123181162',
+  api_secret: 'f0rJ311-OCNRHHh4DDjHofxT6WI'
+});
  
 // other connections 
 app.use(bodyParser.urlencoded({ extended :true }) );
 app.set("view engine", "ejs");
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : '/tmp/'
+}));
 
 const itemSchema = new mongoose.Schema({
 	name : String,
 	description : String,
-	url : String,
+	image_url : String,
+	image_id :String,
 	user : String
 })
 
@@ -42,12 +58,24 @@ app.get("/new", (req,res)=>{
 	res.render("new")
 })
 
-app.post("/new", (req,res)=>{
+app.post("/new", async (req,res)=>{
 	var name = req.body.name;
 	var desc = req.body.desc;
-	var link = req.body.link;
+	var image = req.files.image;
 	var user = req.body.user;
-	newItem = { name : name , description : desc , url : link , user : user };
+	
+	var image_data = await cloudinary.uploader.upload(image.tempFilePath, (err, result)=>{
+		if(err)
+			{
+		console.log("Error : ", err);
+			}
+		// console.log(result);
+		// console.log("Result : ", result  );
+	})
+	console.log(image_data.secure_url , image_data.public_id);
+	var image_url = image_data.secure_url;
+	var image_id = image_data.public_id; 
+	newItem = { name : name , description : desc , image_url : image_url ,image_id : image_id, user : user };
 	Item.create(newItem, (err, newAddedItem)=>{
 		if(err){
 			console.log("EHHH....error occured !!");

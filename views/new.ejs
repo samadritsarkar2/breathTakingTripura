@@ -6,16 +6,16 @@
 		ADD NEW LOCATION
 	</h1>
 	
-	<form action="/new" method="POST">
+	<form action="/new" method="POST" enctype="multipart/form-data"">
 		<div class="form-group">
 			<input class="form-control" type="text" placeholder="Enter Name" name="name" required="true">
 		</div>
 		<div class="form-group">
-		<input class="form-control" type="text" placeholder="Description(140 characters)" name="desc" maxlength="140" required="true">	
+		<input class="form-control" type="text" placeholder="Description(200 characters)" name="desc" maxlength="200" required="true">	
 		</div>
 		
 		<div class="form-group">
-			<input class="form-control" type="text" placeholder="Image Link" name="link" required="true">
+			<input class="form-control" type="file"  name="image" required="true" accept="image/*">
 		</div>
 		<div class="form-group">
 			<input class="form-control" type="text" placeholder="Your Name" name="user" required="true">
@@ -23,7 +23,7 @@
 		<div class="form-group">
 			<button class="btn btn-lg btn-primary btn-block" type="submit">
 				Enter
-			</button>
+			</button> 
 		</div>
 	</form>
 		
