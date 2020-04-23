@@ -18,8 +18,8 @@ mongoose.connect('#mongoDBurl(removed)', {useNewUrlParser: true});
 
 cloudinary.config({
   cloud_name: 'samadritsarkar',
-  api_key: '989154123181162',
-  api_secret: 'f0rJ311-OCNRHHh4DDjHofxT6WI'
+  api_key: '###############',          // removed
+  api_secret: '#######################'  // removed
 });
  
 // other connections 
@@ -89,6 +89,5 @@ app.post("/new", async (req,res)=>{
 })
 
 app.listen(port, ()=>{
-	
 	console.log("Server Started ");
 })
