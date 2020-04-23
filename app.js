@@ -72,7 +72,7 @@ app.post("/new", async (req,res)=>{
 		// console.log(result);
 		// console.log("Result : ", result  );
 	})
-	console.log(image_data.secure_url , image_data.public_id);
+	// console.log(image_data.secure_url , image_data.public_id);
 	var image_url = image_data.secure_url;
 	var image_id = image_data.public_id; 
 	newItem = { name : name , description : desc , image_url : image_url ,image_id : image_id, user : user };
