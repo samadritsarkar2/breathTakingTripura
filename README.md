@@ -10,4 +10,4 @@ Users can add in name of locations along with details and can upload a picture.
 
 
 
-PS - First Project and Repo. 
+// PS - First Project and first Repo. 
